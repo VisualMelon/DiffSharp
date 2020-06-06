@@ -628,8 +628,8 @@ type Tensor =
             let dfTensorFwdTC(cp:Tensor,ap:Tensor,ad:Tensor) = ad * b
             let dfTensorFwdCT(cp:Tensor,bp:Tensor,bd:Tensor) = a * bd
             let dfTensorRevTT(a,b) = MulTT0(b,a)
-            let dfTensorRevTC(a,b) = MulTConstT0(a,b)
-            let dfTensorRevCT(a,b) = MulTT0Const(b,a)
+            let dfTensorRevTC(a,b) = MulTT0Const(a,b)
+            let dfTensorRevCT(a,b) = MulTTConst(b,a)
             Tensor.OpBinary(a, b, fRaw, fTensor, dfTensorFwdTT, dfTensorFwdTC, dfTensorFwdCT, dfTensorRevTT, dfTensorRevTC, dfTensorRevCT)
         elif b.dim = 0 then
             let fRaw(a:RawTensor,b) = a.MulTT0(b)
@@ -638,8 +638,8 @@ type Tensor =
             let dfTensorFwdTC(cp:Tensor,ap:Tensor,ad:Tensor) = ad * b
             let dfTensorFwdCT(cp:Tensor,bp:Tensor,bd:Tensor) = a * bd
             let dfTensorRevTT(a,b) = MulTT0(a,b)
-            let dfTensorRevTC(a,b) = MulTT0Const(a,b)
-            let dfTensorRevCT(a,b) = MulTConstT0(b,a)
+            let dfTensorRevTC(a,b) = MulTTConst(a,b)
+            let dfTensorRevCT(a,b) = MulTConstT0(a,b)
             Tensor.OpBinary(a, b, fRaw, fTensor, dfTensorFwdTT, dfTensorFwdTC, dfTensorFwdCT, dfTensorRevTT, dfTensorRevTC, dfTensorRevCT)
         else
             let newShape = Shape.broadcast2 a.shape b.shape
