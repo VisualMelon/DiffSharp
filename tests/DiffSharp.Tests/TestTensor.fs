@@ -254,7 +254,7 @@ type TestTensor () =
         for combo in Combos.All do 
             let a = combo.tensor([[1,2],[3,4]])
             a.save(fileName)
-            let b = Tensor.load(fileName)
+            let b = Tensor.load(fileName).move(combo.device)
             Assert.AreEqual(a, b)
 
     [<Test>]
